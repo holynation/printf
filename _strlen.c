@@ -3,7 +3,6 @@
 /**
  * _strlen - prints length string in integer
  * @s: string passed to function
- *
  * Return: length
  */
 
@@ -14,5 +13,6 @@ int _strlen(char *s)
 	while (*(s + a))
 		a++;
 
-	return (dest);
+	return (a);
 }
+
