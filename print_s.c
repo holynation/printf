@@ -26,3 +26,4 @@ char *print_s(va_list list)
 
 	return (_strcpy(p, s));
 }
+

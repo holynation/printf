@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _strlen - prints length string in integer
  * @s: string passed to function
@@ -15,3 +16,4 @@ int _strlen(char *s)
 
 	return (a);
 }
+
