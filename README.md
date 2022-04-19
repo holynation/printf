@@ -6,7 +6,7 @@ This project helps to understand the concept of team work and to understand the 
 
 # Tasks
 
-These are all the tasks of this project, the ones that are completed link to the corresponding files.
+These are all the tasks of this project.
 
 ### 0. I'm not going anywhere. You can print that wherever you want to. I'm here and I'm a Spur for life]
 
@@ -57,7 +57,7 @@ These are all the tasks of this project, the ones that are completed link to the
 -   Handle the following flag characters for non-custom conversion specifiers:
     -   + : adds a + in front of signed positive numbers and a - in front of signed negative numbers
     -   space : same as +, but adds a space (is overwritten by +)
-    -   # : adds a 0 in front of octal conversions that don't begin with one, and a 0x or 0X for x or X conversions
+    -   #: adds a 0 in front of octal conversions that don't begin with one, and a 0x or 0X for x or X conversions
 
 ### 9. Sarcasm is lost in print
 
