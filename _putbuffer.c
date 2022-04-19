@@ -19,28 +19,30 @@ void _putchar(char *c, int len)
  *
  * Return: length position
  */
+
 int scan_buffer_overflow(char *buffer, int len)
 {
-    if (len > 1020)
-    {
-        _putchar(buffer, len);
-        len = 0; /* reset length */
-    }
-    return (len);
+	if (len > 1020)
+	{
+		_putchar(buffer, len);
+		len = 0; /* reset length */
+	}
+	return (len);
 }
 
 /**
- * create_a_buffer - create a tmp buffer to hold string till it's ready for write operation
+ * create_a_buffer - create a tmp buffer to hold string
+ * till it's ready for write operation
  * Return: pointer to buffer created
  */
 char *create_a_buffer(void)
 {
-    char *buffer;
+	char *buffer;
 
-    buffer = malloc(sizeof(char) * 1024);
-    if (buffer == NULL) /* validate malloc */
-        return (NULL);
-    return (buffer);
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL) /* validate malloc */
+		return (NULL);
+	return (buffer);
 }
 
 /**
@@ -52,12 +54,12 @@ char *create_a_buffer(void)
 
 void print_buffer(char *buffer, int len, va_list list)
 {
-    char *buff; /* array of characters */
+	char *buff; /* array of characters */
 
-    buff = realloc(buffer, len); /* realloc to correct size */
-    _putchar(buffer, len);
+	buff = realloc(buffer, len); /* realloc to correct size */
+	_putchar(buffer, len);
 
-    /* cleanup memory */
-    free(buff);
-    va_end(list);
+	/* cleanup memory */
+	free(buff);
+	va_end(list);
 }

@@ -3,7 +3,6 @@
 /**
  * _strlen - prints length string in integer
  * @s: string passed to function
- * 
  * Return: length
  */
 

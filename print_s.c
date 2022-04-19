@@ -3,7 +3,6 @@
 /**
  * print_s - takes string and return string
  * @list: string
- * 
  * Return: string
  */
 
@@ -14,7 +13,6 @@ char *print_s(va_list list)
 	int len;
 
 	s = va_arg(list, char *);
-	
 	if (s == NULL)
 		s = "(null)";
 

@@ -11,7 +11,7 @@ int _printf(char *format, ...)
 	char *s, *buffer;
 	va_list valist; /* initializing the args*/
 
-	int counter = 0,i = 0, j = 0, len = 0;
+	int counter = 0, i = 0, j = 0, len = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -27,7 +27,7 @@ int _printf(char *format, ...)
 		if (format[j] != '%')
 		{
 			len = scan_buffer_overflow(buffer, len);
-			buffer[len++] = format[j++]; /* used index j&len and increment both after usage*/
+			buffer[len++] = format[j++]; /*index j&len and j++&len++*/
 			counter++;
 		}
 		else /* % encounterd here and find the equiv util func*/

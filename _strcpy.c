@@ -4,7 +4,6 @@
  * _strcpy - Copies information from src to dest
  * @dest: destination file
  * @src: source file
- * 
  * Return: array
  */
 char *_strcpy(char *dest, char *src)
