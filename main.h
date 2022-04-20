@@ -10,7 +10,8 @@
 /* utility functions */
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
-void _putchar(char *c, int len);
+/*void _putchar(char *c, int len);*/
+int _putchar(char c);
 void _puts(char *str);
 char *create_a_buffer(void);
 int scan_buffer_overflow(char *buffer, int len);
