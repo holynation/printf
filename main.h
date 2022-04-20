@@ -16,7 +16,8 @@ char *create_a_buffer(void);
 int scan_buffer_overflow(char *buffer, int len);
 void print_buffer(char *buffer, int len, va_list list);
 char* (*get_func(char i))(va_list);
-void process_func(char *f, char *buffer, int *len, int *counter);
+int process_format(char *format, va_list valist);
+void process_func(char *f, int* counter, int* len);
 
 /* printf functions */
 int _printf(char *format, ...);

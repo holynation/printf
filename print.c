@@ -1,27 +1,33 @@
 #include "main.h"
 
 /**
-  * _printf - custom printf version
-  * @format: character string with specifiers
-  * Return: expanded strings
-  */
+	* _printf - custom printf version
+	* @format: character string with specifiers
+	* Return: expanded strings
+	*/
 
 int _printf(char *format, ...)
 {
-	char *s, *buffer;
 	va_list valist; /* initializing the args*/
-	char* (*f)(va_list); /**/
-
-	int counter = 0, i = 0, j = 0, len = 0;
+	int counter;
 
 	if (format == NULL)
 		return (-1);
 
-	buffer = create_a_buffer(); /* a tmp memory location using malloc */
+	va_start(valist, format);
+	counter = process_format(format, valist);
+	return (counter);
+}
+
+int process_format(char *format, va_list valist)
+{
+	char *s, *buffer;
+	char* (*f)(va_list); /**/
+
+	int counter = 0, i = 0, j = 0, len = 0;
+	buffer = create_a_buffer();/* a tmp memory location using malloc */
 	if (buffer == NULL)
 		return (-1);
-
-	va_start(valist, format);
 
 	while (format[j] != '\0')
 	{
