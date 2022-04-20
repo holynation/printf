@@ -1,89 +1,51 @@
 #include "main.h"
 
 /**
-	* _printf - custom printf version
-	* @format: character string with specifiers
-	* Return: expanded strings
-	*/
+  * _printf - custom printf version
+  * @format: character string with specifiers
+  * Return: expanded strings
+  */
 
 int _printf(char *format, ...)
 {
+	unsigned int i;
+	char *s;
 	va_list valist; /* initializing the args*/
-	int counter;
 
-	if (format == NULL)
-		return (-1);
+	int counter = 0, j = 0;
 
 	va_start(valist, format);
-	counter = process_format(format, valist);
-	return (counter);
-}
-
-int process_format(char *format, va_list valist)
-{
-	char *s, *buffer;
-	char* (*f)(va_list); /**/
-
-	int counter = 0, i = 0, j = 0, len = 0;
-	buffer = create_a_buffer();/* a tmp memory location using malloc */
-	if (buffer == NULL)
-		return (-1);
 
 	while (format[j] != '\0')
 	{
 		if (format[j] != '%')
 		{
-			len = scan_buffer_overflow(buffer, len);
-			buffer[len++] = format[j++]; /*index j&len and j++&len++*/
+			_putchar(format[j++]); /* used index j and increment after usage*/
 			counter++;
 		}
-		else /* % encounterd here and find the equiv util func*/
+		else /* % got here and find the equiv util func*/
 		{
 			j++;
-			if (format[j] == '\0') /* handle single ending % */
-			{
-				va_end(valist);
-				free(buffer);
-				return (-1);
-			}
 			if (format[j] == '%') /* handle double % symbol */
 			{
-				len = scan_buffer_overflow(buffer, len);
-				buffer[len++] = format[j];
+				_putchar(format[j]);
 				counter++;
 			}
-			else /* using variadic func to dynamically call func */
+			if (format[j] == 'c')
 			{
-				f = get_func(format[j]); /* get function */
-				if (f == NULL) /* validate func */
-				{
-					len = scan_buffer_overflow(buffer, len);
-					buffer[len++] = '%';
-					counter++;
-					buffer[len++] = format[j];
-					counter++;
-				}
-				else
-				{
-					s = f(valist);
-					if (s == NULL) /* validating null or empty*/
-					{
-						va_end(valist); /* cleanup */
-						free(buffer);
-						return (-1);
-					}
-					i = 0;
-					while (s[i] != '\0') /* iterating the string *s */
-					{
-						len = scan_buffer_overflow(buffer, len);
-						buffer[len++] = s[i++]; /* s[i]&i++ */
-						counter++;
-					}
-					free(s);
-				}
-			} j++;
+				i = va_arg(valist, int);
+				_putchar(i);
+				counter++;
+			}
+			if (format[j] == 's')
+			{
+				s = va_arg(valist, char*);
+				_puts(s);
+				counter++;
+			}
+			j++;
 		}
 	}
-	print_buffer(buffer, len, valist);
+	va_end(valist);
 	return (counter);
 }
