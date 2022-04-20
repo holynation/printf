@@ -15,10 +15,24 @@ void _puts(char *str);
 char *create_a_buffer(void);
 int scan_buffer_overflow(char *buffer, int len);
 void print_buffer(char *buffer, int len, va_list list);
+char* (*get_func(char i))(va_list);
+void process_func(char *f, char *buffer, int *len, int *counter);
 
 /* printf functions */
 int _printf(char *format, ...);
 char *print_c(va_list list);
 char *print_s(va_list list);
+
+/**
+ * struct types - defining struct fields
+ * @ch: identifier of type to print (e.g. c means char)
+ * @func: ptr to functions that print according to identifier (e.g. print_c)
+ */
+
+typedef struct types
+{
+	char ch;
+	char* (*func)(va_list);
+} print;
 
 #endif

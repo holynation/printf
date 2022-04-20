@@ -8,11 +8,10 @@
 
 int _printf(char *format, ...)
 {
-	char *s, *buffer;
+	char *buffer;
 	va_list valist; /* initializing the args*/
-	char* (*f)(va_list); /**/
-
-	int counter = 0, i = 0, j = 0, len = 0;
+	char* (*f)(va_list);
+	int counter = 0, j = 0, len = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -48,36 +47,46 @@ int _printf(char *format, ...)
 			}
 			else /* using variadic func to dynamically call func */
 			{
-				f = get_func(format[j]); /* get function */
-				if (f == NULL) /* validate func */
-				{
-					len = scan_buffer_overflow(buffer, len);
-					buffer[len++] = '%';
-					counter++;
-					buffer[len++] = format[j];
-					counter++;
-				}
-				else
-				{
-					s = f(valist);
-					if (s == NULL) /* validating null or empty*/
-					{
-						va_end(valist); /* cleanup */
-						free(buffer);
-						return (-1);
-					}
-					i = 0;
-					while (s[i] != '\0') /* iterating the string *s */
-					{
-						len = scan_buffer_overflow(buffer, len);
-						buffer[len++] = s[i++]; /* s[i]&i++ */
-						counter++;
-					}
-					free(s);
-				}
+				f = get_func(format[j]);
+				process_func(f, &buffer, &len, &counter);
 			} j++;
 		}
 	}
 	print_buffer(buffer, len, valist);
 	return (counter);
 }
+
+int process_func(char* (*f)(va_list), char* buffer, int* len, int* counter)
+{
+	int  i = 0;
+	char *s,
+
+	if (f == NULL)
+	{
+		*len = scan_buffer_overflow(buffer, len);
+		*buffer[len++] = '%';
+		*counter++;
+		*buffer[len++] = format[j];
+		*counter++;
+	}
+	else
+	{
+		s = f(valist);
+		if (s == NULL) /* validating null or empty*/
+		{
+			va_end(valist); /* cleanup */
+			free(buffer);
+			return (-1);
+		}
+		i = 0;
+		while (s[i] != '\0') /* iterating the string *s */
+		{
+			*len = scan_buffer_overflow(buffer, len);
+			*buffer[len++] = s[i++]; /* s[i]&i++ */
+			*counter++;
+		}
+		free(s);
+	}
+	return (0);
+}
+
